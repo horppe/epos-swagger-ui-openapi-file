@@ -11,7 +11,7 @@ servers:
   # 
 paths:
   /retaillog/api/Retailer/SendOTP:
-    get:
+    post:
       tags: 
         - Authentication Service
       summary: Sends an OTP to retailer's phone number and email
@@ -32,7 +32,7 @@ paths:
                 items: 
                   type: string
   /retailstore/api/Login/Authenticate:
-    get:
+    post:
       tags: 
         - Authentication Service
       summary: Authenticates Retailer
