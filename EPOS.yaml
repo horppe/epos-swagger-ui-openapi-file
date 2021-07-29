@@ -6,8 +6,8 @@ info:
 servers:
   - url: https://api-dev.omnibiz.app
     description: Development server
-  - url: https://api-uat.omnibiz.app
-    description: UAT server
+  # - url: https://api-uat.omnibiz.app
+  #   description: UAT server
 paths:
   /retaillog/api/Retailer/SendOTP:
     get:
@@ -32,8 +32,6 @@ components:
       otpMode:
         - type: string
         - enum: ["SMS", "PASSWORD"]
-      phone:
-        - type: string
       source:
         - type: string
-        -
+        - enum: ["Login"]
