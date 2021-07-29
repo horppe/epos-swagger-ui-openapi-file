@@ -96,8 +96,8 @@ components:
           type: string
         Errors:
           type: array
-            item:
-              type: string
+          item:
+            type: string
         StatusCode:
           type: string
     AuthenticateModel:
