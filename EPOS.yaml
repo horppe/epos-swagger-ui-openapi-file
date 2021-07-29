@@ -55,7 +55,7 @@ components:
           required: true
         otpMode:
           type: string
-          enum: ["SMS", "PASSWORD"] 
+          enum: ["SMS", "WhatsApp"] 
           required: true
         source:
           type: string
@@ -106,7 +106,7 @@ components:
           required: true
         GrantType:
           type: string
-          enum: ["OTP"]
+          enum: ["OTP", "PASSWORD"]
           required: true
         source:
           type: string
