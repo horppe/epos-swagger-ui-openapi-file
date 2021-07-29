@@ -11,6 +11,8 @@ servers:
 paths:
   /users:
     get:
+      name: Authentication
+      # title: Authentication
       summary: Returns a list of users.
       description: Optional extended description in CommonMark or HTML.
       responses:
