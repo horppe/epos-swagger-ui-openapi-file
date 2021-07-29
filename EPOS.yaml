@@ -8,6 +8,7 @@ servers:
     description: Development server
   # - url: https://api-uat.omnibiz.app
   #   description: UAT server
+  # 
 paths:
   /retaillog/api/Retailer/SendOTP:
     get:
@@ -30,6 +31,26 @@ paths:
                 type: array
                 items: 
                   type: string
+  /retailstore/api/Login/Authenticate:
+    get:
+      tags: 
+        - Authentication Service
+      summary: Authenticates Retailer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SendOTPModel'
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
 components:
   schemas:
     SendOTPModel:
@@ -37,9 +58,28 @@ components:
       properties:
         phone:
           type: string
+          required: true
         otpMode:
           type: string
           enum: ["SMS", "PASSWORD"] 
+          required: true
         source:
           type: string
           enum: ["Login"]
+          required: true
+    AuthenticateModel:
+      type: object
+      properties:
+        loginId:
+          type: string
+          required: true
+        otp:
+          type: number
+        GrantType:
+          type: string
+          enum: ["OTP"]
+          required: true
+        source:
+          type: string
+          enum: ["Login"]
+          required: true
