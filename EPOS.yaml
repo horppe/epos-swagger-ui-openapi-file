@@ -76,14 +76,14 @@ components:
               type: array
               items:
                 type: object
-                  properties: 
-                    ResultCode:
-                      type: number
-                      enum: [1, 0]
-                    Result:
-                      type: string
-                    ResultStatus:
-                      type: string
+                properties: 
+                  ResultCode:
+                    type: number
+                    enum: [1, 0]
+                  Result:
+                    type: string
+                  ResultStatus:
+                    type: string
         Version:
           type: string
         DateTime:
