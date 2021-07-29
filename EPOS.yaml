@@ -28,7 +28,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/SendOTPResponseModel'
-  /retailstore/api/Login/Authenticate:
+  /retailstore/api/Login/Authenticate/Epos:
     post:
       tags: 
         - Authentication Service
@@ -103,6 +103,7 @@ components:
           required: true
         otp:
           type: number
+          required: true
         GrantType:
           type: string
           enum: ["OTP"]
