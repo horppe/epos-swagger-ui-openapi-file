@@ -30,10 +30,10 @@ components:
       type: object
       properties:
         phone:
-          - type: string
+          type: string
         otpMode:
-          - type: string
-          - enum: ["SMS", "PASSWORD"] 
+          type: string
+          enum: ["SMS", "PASSWORD"] 
         source:
-          - type: string
-          - enum: ["Login"]
+          type: string
+          enum: ["Login"]
