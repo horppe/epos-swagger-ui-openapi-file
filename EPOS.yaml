@@ -21,7 +21,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/SendOTPModel'
+                - $ref: '#/components/schemas/SendOTPRequestModel'
       responses:
         '200':    # status code
           description: A JSON array of user names
@@ -41,19 +41,18 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/SendOTPModel'
+                - $ref: '#/components/schemas/SendOTPRequestModel'
       responses:
         '200':    # status code
-          description: A JSON array of user names
+          # description: A JSON array of user names
           content:
             application/json:
               schema: 
-                type: array
-                items: 
-                  type: string
+                oneOf:
+                - $ref: '#/components/schemas/SendOTPResponseModel'
 components:
   schemas:
-    SendOTPModel:
+    SendOTPRequestModel:
       type: object
       properties:
         phone:
@@ -67,6 +66,40 @@ components:
           type: string
           enum: ["Login"]
           required: true
+    SendOTPResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties: 
+            Details:
+              type: array
+              items:
+                type: object
+                  properties: 
+                    ResultCode:
+                      type: number
+                      enum: [1, 0]
+                    Result:
+                      type: string
+                    ResultStatus:
+                      type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        Errors:
+          type: array
+            item:
+              type: string
+        StatusCode:
+          type: string
     AuthenticateModel:
       type: object
       properties:
