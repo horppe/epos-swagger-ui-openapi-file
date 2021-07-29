@@ -27,11 +27,13 @@ paths:
 components:
   schemas:
     SendOTPModel:
-      phone:
-        - type: string
-      otpMode:
-        - type: string
-        - enum: ["SMS", "PASSWORD"] 
-      source:
-        - type: string
-        - enum: ["Login"]
+      type: object
+      properties:
+        phone:
+          - type: string
+        otpMode:
+          - type: string
+          - enum: ["SMS", "PASSWORD"] 
+        source:
+          - type: string
+          - enum: ["Login"]
