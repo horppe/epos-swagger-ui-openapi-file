@@ -29,7 +29,7 @@ paths:
             application/json:
               schema: 
                 type: array
-                itemss: 
+                items: 
                   type: string
   /retailstore/api/Login/Authenticate:
     post:
@@ -74,7 +74,7 @@ components:
           properties: 
             Details:
               type: array
-              itemss:
+              items:
                 type: object
                 properties: 
                   ResultCode:
