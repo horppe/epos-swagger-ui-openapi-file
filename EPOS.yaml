@@ -4,11 +4,10 @@ info:
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
   version: 0.1.9
 servers:
-  oneOf:
-    - url: https://api-dev.omnibiz.app
-      description: Development server
-    - url: https://api-uat.omnibiz.app
-      description: UAT server
+  - url: https://api-dev.omnibiz.app
+    description: Development server
+  - url: https://api-uat.omnibiz.app
+    description: UAT server
 paths:
   /retaillog/api/Retailer/SendOTP:
     get:
