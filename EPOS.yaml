@@ -31,7 +31,7 @@ components:
         - type: string
       otpMode:
         - type: string
-        - enum: ["SMS", "PASSWORD"]
+        - enum: ["SMS", "PASSWORD"] 
       source:
         - type: string
         - enum: ["Login"]
