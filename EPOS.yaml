@@ -62,13 +62,6 @@ components:
           enum: ["Login"]
           required: true
     SendOTPResponseModel:
-      type: array
-      properties:
-        Details:
-          schema: 
-            oneOf:
-            - $ref: '#/components/schemas/RequestResponseModel'
-    RequestResponseModel:
       type: object
       properties:
         Data:
