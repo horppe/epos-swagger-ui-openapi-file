@@ -6,7 +6,7 @@ info:
 servers:
   oneOf:
     - url: https://api-dev.omnibiz.app
-    description: Development server
+      description: Development server
     - url: https://api-uat.omnibiz.app
       description: UAT server
 paths:
