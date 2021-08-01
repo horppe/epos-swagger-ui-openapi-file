@@ -16,7 +16,7 @@ paths:
     get:
       tags: 
         - Utility Service
-      summary: Retrive a Retailer's OTP code
+      summary: Retrieve a Retailer's OTP code
       description: Kindly use the following host to query Utility service https://epos-utility-service.herokuapp.com
       parameters:
         - in: query
