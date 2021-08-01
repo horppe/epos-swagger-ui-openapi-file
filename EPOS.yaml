@@ -6,10 +6,26 @@ info:
 servers:
   - url: https://api-dev.omnibiz.app
     description: Development server
+  # - url: https://epos-utility-service.herokuapp.com
+  #   description: Utility server
   # - url: https://api-uat.omnibiz.app
   #   description: UAT server
   # 
 paths:
+  /get-retailer-otp:
+    get:
+      tags: 
+        - Utility Service
+      summary: Retrive a Retailer's OTP code
+      description: Kindly use the following host to query Utility service https://epos-utility-service.herokuapp.com
+      parameters:
+        - in: query
+          name: retailer_phone
+          required: true
+          schema:
+            type: string
+          description: The retailer's phone number
+
   /retaillog/api/Retailer/SendOTP:
     post:
       tags: 
@@ -28,6 +44,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/SendOTPResponseModel'
+
   /retailstore/api/Login/Authenticate/Epos:
     post:
       tags: 
@@ -45,6 +62,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
+                
 components:
   schemas:
     SendOTPRequestModel:
