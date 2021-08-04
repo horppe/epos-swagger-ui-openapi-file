@@ -224,6 +224,7 @@ components:
           example: 10
         SortBy:
           type: string
+          enum: ["ProductName"]
           required: false
         SortDirection:
           type: string
