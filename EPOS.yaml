@@ -217,9 +217,11 @@ components:
         PageIndex:
           type: number
           required: false
+          example: 1
         PageSize:
           type: number
           required: false
+          example: 10
         SortBy:
           type: string
           required: false
