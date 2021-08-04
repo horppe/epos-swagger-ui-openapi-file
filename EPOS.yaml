@@ -62,6 +62,16 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
+  /api/product/GetAvailableProducts:
+    post:
+      tags:
+        - Product Service
+      summary: Get Retailer's products with inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAvailableProductsRequestModel'
                 
 components:
   schemas:
@@ -121,6 +131,9 @@ components:
           required: true
         otp:
           type: number
+          required: true
+        password:
+          type: string
           required: true
         GrantType:
           type: string
@@ -187,3 +200,32 @@ components:
             type: string
         StatusCode:
           type: string
+    GetAvailableProductsRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        CategoryIds:
+          type: array
+          items:
+            type: number
+        BrandIds:
+          type: array
+          items:
+            type: number
+        PageIndex:
+          type: number
+          required: false
+        PageSize:
+          type: number
+          required: false
+        SortBy:
+          type: string
+          required: false
+        SortDirection:
+          type: string
+          enum: ["ASC", "DESC"]
+        SearchKeyword:
+          type: string
+          required: false
