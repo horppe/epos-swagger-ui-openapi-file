@@ -267,22 +267,7 @@ components:
         Products:
           type: array
           items:
-            type: object
-            properties:
-              ProductId:
-                type: number
-              ProductName:
-                type: string
-              BrandID:
-                type: number
-              CategoryID:
-                type: number
-              ProductCode:
-                type: string
-              UnitWeight:
-                type: string
-              IsActive:
-                type: boolean
+            $ref: '#/components/schemas/ProductModel'
     GetProductCategoriesResponseModel:
       type: object
       properties:
@@ -317,5 +302,34 @@ components:
           type: number
         Brand_Name:
           type: string
-        
+    ProductModel:
+      type: object
+        properties:
+          ProductId:
+            type: number
+          ProductName:
+            type: string
+          BrandID:
+            type: number
+          CategoryID:
+            type: number
+          ProductCode:
+            type: string
+          UnitWeight:
+            type: string
+          IsActive:
+            type: boolean
+          ProductImages:
+            type: array
+            items: 
+              $ref: '#/components/schemas/ProductImage'
+    ProductCategory:
+      type: object
+      properties:
+        ProductId:
+          type: number
+        ProductImageId:
+          type: number
+        ProductImage:
+          type: string
 
