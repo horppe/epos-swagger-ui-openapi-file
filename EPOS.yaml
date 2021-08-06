@@ -323,12 +323,12 @@ components:
             type: array
             items: 
               $ref: '#/components/schemas/ProductImage'
-    ProductCategory:
+    ProductImage:
       type: object
       properties:
-        ProductId:
-          type: number
         ProductImageId:
+          type: number
+        ProductId:
           type: number
         ProductImage:
           type: string
