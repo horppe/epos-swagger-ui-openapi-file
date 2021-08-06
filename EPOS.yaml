@@ -62,7 +62,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
-  /api/product/GetAvailableProducts:
+  /retailstore/api/product/Product/AvailableProducts:
     post:
       tags:
         - Product Service
@@ -72,6 +72,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GetAvailableProductsRequestModel'
+      responses:
+        '200':    # status code
+          # description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/GetAvailableProductsResponseModel'
+  /retailstore/api/product/Product/Categories:
+    get:
+      tags:
+        - Product Service
+      summary: Get all product categories
+  /retailstore/api/product/Product/Brands:
+    get:
+      tags:
+        - Product Service
+      summary: Get all product brands
                 
 components:
   schemas:
@@ -232,3 +249,175 @@ components:
         SearchKeyword:
           type: string
           required: false
+    GetAvailableProductsRequestModel'
+      responses:
+        '200':    # status code
+          # description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/AuthenticateResponseModel'
+  /retailstore/api/product/GetAvailableProducts:
+    post:
+      tags:
+        - Product Service
+      summary: Get Retailer's products with inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAvailableProductsRequestModel'
+                
+components:
+  schemas:
+    SendOTPRequestModel:
+      type: object
+      properties:
+        phone:
+          type: string
+          required: true
+        otpMode:
+          type: string
+          enum: ["SMS", "WhatsApp"] 
+          required: true
+        source:
+          type: string
+          enum: ["Login"]
+          required: true
+    SendOTPResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties: 
+            Details:
+              type: array
+              items:
+                type: object
+                properties: 
+                  ResultCode:
+                    type: number
+                    enum: [1, 0]
+                  Result:
+                    type: string
+                  ResultStatus:
+                    type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        Errors:
+          type: array
+          items:
+            type: string
+        StatusCode:
+          type: string
+    AuthenticateRequestModel:
+      type: object
+      properties:
+        loginId:
+          type: string
+          required: true
+        otp:
+          type: number
+          required: true
+        password:
+          type: string
+          required: true
+        GrantType:
+          type: string
+          enum: ["OTP", "PASSWORD"]
+          required: true
+        source:
+          type: string
+          enum: ["Login"]
+          required: true
+    AuthenticateResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties: 
+            RetailId:
+              type: number
+              example: 9784879
+            RetailName:
+              type: string
+              example: No name
+            CountryId:
+              type: number
+              example: 1
+            CountryName:
+              type: string
+            StateId:
+              type: number
+            StateName:
+              type: string
+            CityId:
+              type: number
+            CityName:
+              type: string
+            TownId:
+              type: number
+            TownName:
+              type: string
+            AccessToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJCdXNpbmVzc0lkIjoiNzYiLCJVc2VySWQiOiI0NTA
+            RefreshToken:
+              type: string
+              example: 8a78a131-3e5e-46c4-ae75-8157bd7
+            Expires:
+              type: string
+            Email:
+              type: string
+            Phone:
+              type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        Errors:
+          type: array
+          items:
+            type: string
+        StatusCode:
+          type: string
+    GetAvailableProductsResponseModel:
+      type: object
+      properties:
+        Count:
+          type: number
+          required: true
+        Products:
+          type: array
+          items:
+            type: object
+            properties:
+              ProductId:
+                type: number
+              ProductName:
+                type: string
+              BrandID:
+                type: number
+              CategoryID:
+                type: number
+              ProductCode:
+                type: string
+              UnitWeight:
+                type: string
+              IsActive:
+                type: boolean
+
