@@ -283,20 +283,6 @@ components:
                 type: string
               IsActive:
                 type: boolean
-    ProductCategory:
-      type: object
-      properties:
-        Category_ID:
-          type: number
-        Category_Name:
-          type: string
-    ProductBrand:
-      type: object
-      properties:
-        Brand_ID:
-          type: number
-        Brand_Name:
-          type: string
     GetProductCategoriesResponseModel:
       type: object
       properties:
@@ -317,5 +303,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductBrand'
+    ProductCategory:
+      type: object
+      properties:
+        Category_ID:
+          type: number
+        Category_Name:
+          type: string
+    ProductBrand:
+      type: object
+      properties:
+        Brand_ID:
+          type: number
+        Brand_Name:
+          type: string
         
 
