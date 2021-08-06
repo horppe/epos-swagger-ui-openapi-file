@@ -306,8 +306,7 @@ components:
         Categories:
           type: array
           items:
-            type:
-              $ref: '#/components/schemas/ProductCategory'
+            $ref: '#/components/schemas/ProductCategory'
     GetProductBrandsResponseModel:
       type: object
       properties:
@@ -317,7 +316,6 @@ components:
         Brands:
           type: array
           items:
-            type:
-              $ref: '#/components/schemas/ProductBrand'
+            $ref: '#/components/schemas/ProductBrand'
         
 
