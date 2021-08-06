@@ -304,25 +304,25 @@ components:
           type: string
     ProductModel:
       type: object
-        properties:
-          ProductId:
-            type: number
-          ProductName:
-            type: string
-          BrandID:
-            type: number
-          CategoryID:
-            type: number
-          ProductCode:
-            type: string
-          UnitWeight:
-            type: string
-          IsActive:
-            type: boolean
-          ProductImages:
-            type: array
-            items: 
-              $ref: '#/components/schemas/ProductImage'
+      properties:
+        ProductId:
+          type: number
+        ProductName:
+          type: string
+        BrandID:
+          type: number
+        CategoryID:
+          type: number
+        ProductCode:
+          type: string
+        UnitWeight:
+          type: string
+        IsActive:
+          type: boolean
+        ProductImages:
+          type: array
+          items: 
+            $ref: '#/components/schemas/ProductImage'
     ProductImage:
       type: object
       properties:
