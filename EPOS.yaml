@@ -60,7 +60,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
-  /retailstore/api/product/Product/AvailableProducts:
+  /retailstore/api/product/available-products:
     post:
       tags:
         - Product Service
@@ -76,7 +76,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/GetAvailableProductsResponseModel'
-  /retailstore/api/product/Product/Categories:
+  /retailstore/api/product/categories:
     get:
       tags:
         - Product Service
@@ -87,7 +87,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/GetProductCategoriesResponseModel'
-  /retailstore/api/product/Product/Brands:
+  /retailstore/api/product/brands:
     get:
       tags:
         - Product Service
