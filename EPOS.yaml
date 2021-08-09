@@ -302,16 +302,16 @@ components:
     ProductCategory:
       type: object
       properties:
-        Category_ID:
+        CategoryId:
           type: number
-        Category_Name:
+        CategoryName:
           type: string
     ProductBrand:
       type: object
       properties:
-        Brand_ID:
+        BrandId:
           type: number
-        Brand_Name:
+        BrandName:
           type: string
     ProductModel:
       type: object
