@@ -450,10 +450,7 @@ components:
       properties:
         Data:
           type: object
-          properties:
-            Message:
-              type: string
-              example: null
+          example: null
         Version:
           type: string
         DateTime:
