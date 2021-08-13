@@ -58,7 +58,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
-  /retailstore/api/login/initialize/activation-request:
+  /retailstore/api/CustomerActivation/Initialize:
     post:
       tags: 
         - Authentication Service
@@ -74,7 +74,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/InitializeActivationRequestResponseModel'
-  /retailstore/api/login/confirm/activation-request:
+  /retailstore/api/CustomerActivation/Confirm:
     post:
       tags: 
         - Authentication Service
