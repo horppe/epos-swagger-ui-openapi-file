@@ -444,7 +444,7 @@ components:
           type: string
         StatusCode:
           type: string
-          example: BadRequest
+          example: Ok
     ConfirmActivationRequestErrorResponseModel:
       type: object
       properties:
