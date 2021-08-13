@@ -90,6 +90,11 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/ConfirmActivationRequestResponseModel'
+        '400':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ConfirmActivationRequestErrorResponseModel'
   /retailstore/api/product/available-products:
     post:
       security:
@@ -427,6 +432,28 @@ components:
             Message:
               type: string
               example: Activation request successfully created
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+          example: BadRequest
+    ConfirmActivationRequestErrorResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Message:
+              type: string
+              example: null
         Version:
           type: string
         DateTime:
