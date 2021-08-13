@@ -6,11 +6,9 @@ info:
 servers:
   - url: https://api-dev.omnibiz.app
     description: Development server
-  # - url: https://epos-utility-service.herokuapp.com
-  #   description: Utility server
   # - url: https://api-uat.omnibiz.app
   #   description: UAT server
-  # 
+  
 paths:
   /get-retailer-otp:
     get:
@@ -44,7 +42,7 @@ paths:
               schema: 
                 $ref: '#/components/schemas/SendOTPResponseModel'
 
-  /retailstore/api/Login/Authenticate/Epos:
+  /retailstore/api/login/authenticate/epos:
     post:
       tags: 
         - Authentication Service
@@ -60,6 +58,38 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
+  /retailstore/api/login/initialize/activation-request:
+    post:
+      tags: 
+        - Authentication Service
+      summary: Initialize Activation Request for a Retailer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitializeActivationRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/InitializeActivationRequestResponseModel'
+  /retailstore/api/login/confirm/activation-request:
+    post:
+      tags: 
+        - Authentication Service
+      summary: Confirm and Create Activation Request for a Retailer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmActivationRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ConfirmActivationRequestResponseModel'
   /retailstore/api/product/available-products:
     post:
       security:
@@ -89,7 +119,7 @@ paths:
         '200':
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: '#/components/schemas/GetProductCategoriesResponseModel'
   /retailstore/api/product/brands:
     get:
@@ -102,7 +132,7 @@ paths:
         '200':
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: '#/components/schemas/GetProductBrandsResponseModel'
 
 components:
@@ -343,4 +373,71 @@ components:
           type: number
         ProductImage:
           type: string
-
+    InitializeActivationRequestModel:
+      type: object
+      properties:
+        otp:
+          type: string
+          required: true
+        phone:
+          type: string
+          required: true
+        deviceId:
+          type: string
+          required: true
+    InitializeActivationRequestResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Message:
+              type: string
+              example: Activation request successfully initialized
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+    ConfirmActivationRequestModel:
+      type: object
+      properties:
+        phone:
+          type: string
+          required: true
+        deviceId:
+          type: string
+          required: true
+        deviceName:
+          type: string
+          required: true
+    ConfirmActivationRequestResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Message:
+              type: string
+              example: Activation request successfully created
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+          example: Request has been already raised
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+          example: BadRequest
