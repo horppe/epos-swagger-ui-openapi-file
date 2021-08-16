@@ -139,6 +139,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetProductBrandsResponseModel'
+  /retailstore/api/inventory/get-products:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Retailer's Inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAvailableProductsRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/GetInventoryProductsResponseModel'
+  /retailstore/api/inventory/products/activate:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Activate a product for Inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateDeactivateRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
+  /retailstore/api/inventory/products/deactivate:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Deactivate a product for Inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateDeactivateRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
 
 components:
   securitySchemes:
@@ -314,6 +364,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductModel'
+    GetInventoryProductsResponseModel:
+      type: object
+      properties:
+        Count:
+          type: number
+          required: true
+        Products:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryProductModel'
     GetProductCategoriesResponseModel:
       type: object
       properties:
@@ -365,6 +425,35 @@ components:
           type: string
         IsActive:
           type: boolean
+        CurrentQuantity:
+          type: number
+        ProductImages:
+          type: array
+          items: 
+            $ref: '#/components/schemas/ProductImage'
+    InventoryProductModel:
+      type: object
+      properties:
+        ProductId:
+          type: number
+        ProductName:
+          type: string
+        BrandID:
+          type: number
+        CategoryID:
+          type: number
+        ProductCode:
+          type: string
+        UnitWeight:
+          type: string
+        IsFavourite:
+          type: boolean
+        CurrentQuantity:
+          type: number
+        CurrentCostPrice:
+          type: number
+        CurrentSellingPrice:
+          type: number
         ProductImages:
           type: array
           items: 
@@ -465,3 +554,10 @@ components:
         StatusCode:
           type: string
           example: BadRequest
+    ActivateDeactivateRequestModel:
+      type: object
+      properties:
+        ProductIds:
+          type: array
+          items:
+            type: number
