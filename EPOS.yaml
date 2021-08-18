@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Omnibiz EPOS API Docs
-  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  # description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
   version: 0.1.9
 servers:
   - url: https://api-dev.omnibiz.app
@@ -189,6 +189,39 @@ paths:
         '200':
           content:
             application/json:
+  /retailstore/api/distributor:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Distributor Service
+      summary: Create a distributor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDistributorRequestModel'
+      responses:
+        '200':
+  /retailstore/api/distributor:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Distributor Service
+      summary: Get Retailer's distributors
+      parameters:
+        - in: query
+          name: RetailerId
+          schema:
+            type: integer
+          description: Retailer ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/RetailerDistributorsResponseModel'
 
 components:
   securitySchemes:
@@ -564,3 +597,46 @@ components:
           type: array
           items:
             type: number
+    AddDistributorRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        DistributorName:
+          type: string
+          required: true
+        Phone:
+          type: string
+          required: true
+    RetailerDistributorsResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Count:
+              type: number
+            Distrbutors:
+              type: array
+              items:
+                type: object
+                properties:
+                  ExternalDistributorId:
+                    type: number
+                  Name:
+                    type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+          example: BadRequest
+
