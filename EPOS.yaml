@@ -357,7 +357,10 @@ components:
     GetAvailableProductsResponseModel:
       type: object
       properties:
-        Count:
+        TotalProducts:
+          type: number
+          required: true
+        ActiveProducts:
           type: number
           required: true
         Products:
