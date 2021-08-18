@@ -202,8 +202,6 @@ paths:
             schema:
               $ref: '#/components/schemas/AddDistributorRequestModel'
       responses:
-        '200':
-  /retailstore/api/distributor:
     get:
       security:
         - bearerAuth: []
