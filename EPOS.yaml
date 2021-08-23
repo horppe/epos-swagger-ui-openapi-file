@@ -187,6 +187,9 @@ paths:
               $ref: '#/components/schemas/ActivateDeactivateRequestModel'
       responses:
         '200':
+          content:
+              application/json:
+                schema: 
   /retailstore/api/inventory/stock:
     post:
       security:
@@ -213,7 +216,10 @@ paths:
           description: The receipt image to upload.
       responses:
         '200':
-      
+          content:
+              application/json:
+                schema: 
+    
   /retailstore/api/distributor:
     post:
       security:
@@ -245,6 +251,37 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/RetailerDistributorsResponseModel'
+
+  /retailstore/api/inventory/removal-reasons:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Stock Removal Reasons
+      responses:
+        '200':
+          content:
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/RemovalReasonsResponseModel'
+  /retailstore/api/inventory/stock/remove:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Remove Stock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockRemoveRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
 
 components:
   securitySchemes:
@@ -673,4 +710,56 @@ components:
           type: number
         Quantity:
           type: number
+    RemovalReasonsResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Count:
+              type: number
+            RemovalReasons:
+              type: array
+              items:
+                type: object
+                properties:
+                  ReasonId:
+                    type: number
+                  ReasonName:
+                    type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+          example: BadRequest
+    StockRemoveRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        ReasonId:
+          type: number
+          required: true
+        StockProducts:
+          type: array
+          required: true
+          items:
+            type: object
+            properties:
+              ProductId:
+                type: number
+                required: true
+              Quantity:
+                type: number
+                required: true
+
 
