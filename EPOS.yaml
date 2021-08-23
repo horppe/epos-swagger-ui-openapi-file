@@ -187,8 +187,33 @@ paths:
               $ref: '#/components/schemas/ActivateDeactivateRequestModel'
       responses:
         '200':
-          content:
-            application/json:
+  /retailstore/api/inventory/stock:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Add stock
+      consumes:
+         - multipart/form-data
+      parameters:
+        - in: formData
+          name: StockProductsJson
+          type: string
+          description: A JSON stringified array of Stock Products (AddStockProductModel) see below for model.
+        - in: formData
+          name: RetailerId
+          type: number
+        - in: formData
+          name: DistributorId
+          type: number
+        - in: formData
+          name: ReceiptImage
+          type: file
+          description: The receipt image to upload.
+      responses:
+        '200':
+      
   /retailstore/api/distributor:
     post:
       security:
@@ -637,4 +662,15 @@ components:
         StatusCode:
           type: string
           example: BadRequest
+    AddStockProductModel:
+      type: object
+      properties:
+        ProductId:
+          type: number
+        CostPrice:
+          type: number
+        SellingPrice:
+          type: number
+        Quantity:
+          type: number
 
