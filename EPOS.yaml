@@ -200,7 +200,7 @@ paths:
         - in: formData
           name: StockProductsJson
           type: string
-          description: A JSON stringified array of Stock Products (AddStockProductModel) see below for model.
+          description: A JSON stringified array of Stock Products (StockProductModel) see below for model.
         - in: formData
           name: RetailerId
           type: number
@@ -662,7 +662,7 @@ components:
         StatusCode:
           type: string
           example: BadRequest
-    AddStockProductModel:
+    StockProductModel:
       type: object
       properties:
         ProductId:
