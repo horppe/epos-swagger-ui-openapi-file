@@ -197,23 +197,11 @@ paths:
       tags:
         - Inventory Service
       summary: Add stock
-      consumes:
-         - multipart/form-data
-      parameters:
-        - in: formData
-          name: StockProductsJson
-          type: string
-          description: A JSON stringified array of Stock Products (StockProductModel) see below for model.
-        - in: formData
-          name: RetailerId
-          type: number
-        - in: formData
-          name: DistributorId
-          type: number
-        - in: formData
-          name: ReceiptImage
-          type: file
-          description: The receipt image to upload.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddStockRequestModel'
       responses:
         '200':
           content:
@@ -699,6 +687,23 @@ components:
         StatusCode:
           type: string
           example: BadRequest
+    AddStockRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        DistributorId:
+          type: number
+          required: true
+        StockProducts:
+          type: array
+          required: true
+          items:
+            $ref: '#/components/schemas/StockProductModel'
+        ReceiptImageBase64:
+          type: string
+          required: false
     StockProductModel:
       type: object
       properties:
@@ -761,5 +766,6 @@ components:
               Quantity:
                 type: number
                 required: true
+    
 
 
