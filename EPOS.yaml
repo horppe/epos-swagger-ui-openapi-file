@@ -704,6 +704,7 @@ components:
         ReceiptImageBase64:
           type: string
           required: false
+          example: data:image/png;base64,iVBOJKGY...
     StockProductModel:
       type: object
       properties:
