@@ -281,13 +281,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StockRemoveRequestModel'
+              $ref: '#/components/schemas/GetAvailableProductsRequestModel'
       responses:
         '200':
           content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/GetAvailableProductsRequestModel'
   
   /retailstore/api/eposcustomer:
     post:
