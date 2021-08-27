@@ -270,6 +270,60 @@ paths:
           content:
               application/json:
                 schema:
+  /retailstore/api/inventory/get-stocked-products:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Products that have available stock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockRemoveRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetAvailableProductsRequestModel'
+  
+  /retailstore/api/eposcustomer:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Customer Service
+      summary: Add Retailer Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRetailCustomerRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Customer Service
+      summary: Get Retailer Customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRetailCustomerRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetRetailCustomerResponseModel'
 
 components:
   securitySchemes:
@@ -767,6 +821,54 @@ components:
               Quantity:
                 type: number
                 required: true
+    AddRetailCustomerRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        CustomerName:
+          type: string
+          required: true
+        CustomerPhone:
+          type: string
+          required: true
+    GetRetailCustomerRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+    GetRetailCustomerResponseModel:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Count:
+              type: number
+            Distrbutors:
+              type: array
+              items:
+                type: object
+                properties:
+                  CustomerId:
+                    type: number
+                  Name:
+                    type: string
+        Version:
+          type: string
+        DateTime:
+          type: string
+        ResponseType:
+          type: string
+        Message:
+          type: string
+        MessageTitle:
+          type: string
+        StatusCode:
+          type: string
+          example: Ok
     
 
 
