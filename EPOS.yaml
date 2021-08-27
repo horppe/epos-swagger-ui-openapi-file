@@ -846,7 +846,7 @@ components:
           properties:
             Count:
               type: number
-            Distrbutors:
+            Customers:
               type: array
               items:
                 type: object
