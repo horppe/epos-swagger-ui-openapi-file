@@ -776,7 +776,7 @@ components:
           type: string
           required: false
           example: data:image/png;base64,iVBOJKGY...
-          
+
     AddInvoiceRequestModel:
       type: object
       properties:
@@ -784,7 +784,7 @@ components:
           type: number
           required: true
         CustomerId:
-          type: string
+          type: number
           required: false
         InvoiceNumber:
           type: string
