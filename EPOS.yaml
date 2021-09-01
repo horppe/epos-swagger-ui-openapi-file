@@ -323,6 +323,24 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/GetRetailCustomerResponseModel'
+  /retailstore/api/sale:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Sale Service
+      summary: Add Sale Invoice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddInvoiceRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+
 
 components:
   securitySchemes:
@@ -758,6 +776,43 @@ components:
           type: string
           required: false
           example: data:image/png;base64,iVBOJKGY...
+          
+    AddInvoiceRequestModel:
+      type: object
+      properties:
+        RetailerId:
+          type: number
+          required: true
+        CustomerId:
+          type: string
+          required: false
+        InvoiceNumber:
+          type: string
+          required: true
+        InvoiceDate:
+          type: string
+          required: true
+        Products:
+          type: array
+          required: true
+          items:
+            $ref: '#/components/schemas/StockProductModel'
+        Payments:
+          type: array
+          required: true
+          items:
+            $ref: '#/components/schemas/PaymentModel'
+
+    PaymentModel:
+      type: object
+      properties:
+        Method:
+          type: string
+          required: false
+        Amount:
+          type: number
+          required: false
+
     StockProductModel:
       type: object
       properties:
@@ -869,5 +924,3 @@ components:
           type: string
           example: Ok
     
-
-
