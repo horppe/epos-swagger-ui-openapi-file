@@ -808,10 +808,14 @@ components:
       properties:
         Method:
           type: string
-          required: false
+          required: true
+          enum:
+            - CASH
+            - POS
+            - BANKTRANSFER
         Amount:
           type: number
-          required: false
+          required: true
 
     StockProductModel:
       type: object
