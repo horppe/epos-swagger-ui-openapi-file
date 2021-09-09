@@ -312,11 +312,7 @@ paths:
       tags:
         - Customer Service
       summary: Get Retailer Customers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetRetailCustomerRequestModel'
+      
       responses:
         '200':
           content:
@@ -531,9 +527,6 @@ components:
     GetAvailableProductsRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         CategoryIds:
           type: array
           items:
@@ -773,9 +766,6 @@ components:
     AddDistributorRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         DistributorName:
           type: string
           required: true
@@ -815,9 +805,6 @@ components:
     AddStockRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         DistributorId:
           type: number
           required: true
@@ -834,9 +821,6 @@ components:
     AddInvoiceRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         CustomerId:
           type: number
           required: false
@@ -915,9 +899,6 @@ components:
     StockRemoveRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         ReasonId:
           type: number
           required: true
@@ -936,21 +917,13 @@ components:
     AddRetailCustomerRequestModel:
       type: object
       properties:
-        RetailerId:
-          type: number
-          required: true
         CustomerName:
           type: string
           required: true
         CustomerPhone:
           type: string
           required: true
-    GetRetailCustomerRequestModel:
-      type: object
-      properties:
-        RetailerId:
-          type: number
-          required: true
+    
     GetRetailCustomerResponseModel:
       type: object
       properties:
