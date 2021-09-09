@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Omnibiz EPOS API Docs
+  title: Omnibiz EPOS API Documention
   # description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
   version: 0.1.9
 servers:
@@ -340,6 +340,60 @@ paths:
           content:
               application/json:
                 schema:
+    get:
+      tags: 
+        - Sale Service
+      summary: Retrieve all Retail Sales
+      parameters:
+        - in: query
+          name: PageIndex
+          required: false
+          schema:
+            type: number
+          description: Pagination page index
+        - in: query
+          name: PageSize
+          required: false
+          schema:
+            type: number
+          description: Pagination page size. default = 20
+        - in: query
+          name: CustomerPhone
+          required: false
+          schema:
+            type: string
+          description: Customer's Phone number
+        - in: query
+          name: StartDate
+          required: true
+          schema:
+            type: string
+          description: Query start date
+        - in: query
+          name: EndDate
+          required: true
+          schema:
+            type: string
+          description: Query end date
+
+  /retailstore/api/sale/invoice:
+    get:
+      tags: 
+        - Sale Service
+      summary: Retrieve Sale Invoice information with Invoice Id
+      parameters:
+        - in: query
+          name: InvoiceId
+          required: false
+          schema:
+            type: number
+          description: Invoice Id
+
+  /retailstore/api/sale/dashboard:
+    get:
+      tags: 
+        - Sale Service
+      summary: Retrieve Dashboard Sale information
 
 
 components:
