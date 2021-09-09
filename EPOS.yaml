@@ -384,7 +384,7 @@ paths:
       parameters:
         - in: query
           name: InvoiceId
-          required: false
+          required: true
           schema:
             type: number
           description: Invoice Id
