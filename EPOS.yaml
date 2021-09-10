@@ -988,4 +988,5 @@ components:
         IsFavourite:
           type: boolean
           required: true
+          example: false
     
