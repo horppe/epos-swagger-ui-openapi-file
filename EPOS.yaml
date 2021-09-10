@@ -986,6 +986,6 @@ components:
           type: number
           required: true
         IsFavourite:
-          type: number
-          required: boolean
+          type: boolean
+          required: true
     
