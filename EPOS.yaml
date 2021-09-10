@@ -337,6 +337,8 @@ paths:
               application/json:
                 schema:
     get:
+      security:
+        - bearerAuth: []
       tags: 
         - Sale Service
       summary: Retrieve all Retail Sales
@@ -374,6 +376,8 @@ paths:
 
   /retailstore/api/sale/invoice:
     get:
+      security:
+        - bearerAuth: []
       tags: 
         - Sale Service
       summary: Retrieve Sale Invoice information with Invoice Id
@@ -387,9 +391,29 @@ paths:
 
   /retailstore/api/sale/dashboard:
     get:
+      security:
+        - bearerAuth: []
       tags: 
         - Sale Service
       summary: Retrieve Dashboard Sale information
+  
+  /retailstore/api/inventory/update-favourite-product:
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Update Favourite Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavouriteProductRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
 
 
 components:
@@ -954,4 +978,14 @@ components:
         StatusCode:
           type: string
           example: Ok
+
+    FavouriteProductRequestModel:
+      type: object
+      properties:
+        InventoryId:
+          type: number
+          required: true
+        IsFavourite:
+          type: number
+          required: boolean
     
