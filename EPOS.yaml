@@ -58,7 +58,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/AuthenticateResponseModel'
-  /retailstore/api/CustomerActivation/Initialize:
+  /retailstore/api/customeractivation/initialize:
     post:
       tags: 
         - Authentication Service
@@ -74,7 +74,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/InitializeActivationRequestResponseModel'
-  /retailstore/api/CustomerActivation/Confirm:
+  /retailstore/api/customeractivation/confirm:
     post:
       tags: 
         - Authentication Service
@@ -409,6 +409,72 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FavouriteProductRequestModel'
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+
+  /retailstore/api/inventory/transactions:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get inventory transactions
+      parameters:
+        - in: query
+          name: StartDate
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: EndDate
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: Action
+          required: true
+          schema:
+            type: string
+            enum: ["ADD", "REMOVE", "ALL"] 
+        - in: query
+          name: DistributorSearch
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: PageIndex
+          required: false
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          schema:
+            type: number
+
+      responses:
+        '200':
+          content:
+              application/json:
+                schema:
+                
+
+  /retailstore/api/inventory/transaction-detail:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get inventory transaction detail
+      parameters:
+        - in: query
+          name: TransactionId
+          required: true
+          schema:
+            type: number
       responses:
         '200':
           content:
@@ -989,4 +1055,3 @@ components:
           type: boolean
           required: true
           example: false
-    
