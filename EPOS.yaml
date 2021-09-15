@@ -696,9 +696,6 @@ components:
     InitializeActivationRequestModel:
       type: object
       properties:
-        otp:
-          type: string
-          required: true
         phone:
           type: string
           required: true
@@ -729,6 +726,9 @@ components:
     ConfirmActivationRequestModel:
       type: object
       properties:
+        otp:
+          type: string
+          required: true
         phone:
           type: string
           required: true
