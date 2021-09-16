@@ -95,6 +95,7 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/ConfirmActivationRequestErrorResponseModel'
+
   /retailstore/api/product/available-products:
     post:
       security:
@@ -102,6 +103,24 @@ paths:
       tags:
         - Product Service
       summary: Get Retailer's products with inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAvailableProductsRequestModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/GetAvailableProductsResponseModel'
+  /retailstore/api/product/active-products:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Product Service
+      summary: Get Active Products
       requestBody:
         content:
           application/json:
