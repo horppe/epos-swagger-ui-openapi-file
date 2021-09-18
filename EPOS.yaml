@@ -176,6 +176,63 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/GetInventoryProductsResponseModel'
+  /retailstore/api/inventory/favourite-product:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Retailer's Inventory
+      parameters:
+        - in: query
+          name: CategoryIds
+          required: false
+          schema:
+            type: array
+            items:
+              type: number
+        - in: query
+          name: BrandIds
+          required: false
+          schema:
+            type: array
+            items:
+              type: number
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["ProductName"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/GetInventoryProductsResponseModel'
   /retailstore/api/inventory/products/activate:
     post:
       security:
