@@ -278,19 +278,20 @@ paths:
       parameters:
         - in: formData
           name: StockProductsJson
+          required: true
           type: string
-          description: A JSON stringified array of Stock Products (AddStockProductModel) see below for model.
-        - in: formData
-          name: RetailerId
-          type: number
+          description: A JSON stringified array of Stock Products (StockProductModel) see below for model.
         - in: formData
           name: DistributorId
+          required: false
           type: number
         - in: formData
           name: DeliveredOrderId
+          required: false
           type: number
         - in: formData
           name: ReceiptImage
+          required: false
           type: file
           description: The receipt image to upload.
       # requestBody:
