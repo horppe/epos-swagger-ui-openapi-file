@@ -264,8 +264,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema: 
+            application/json:
+              schema: 
   /retailstore/api/inventory/stock:
     post:
       security:
@@ -302,8 +302,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema: 
+            application/json:
+              schema: 
     
   /retailstore/api/distributor:
     post:
@@ -347,9 +347,9 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema: 
-                  $ref: '#/components/schemas/RemovalReasonsResponseModel'
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/RemovalReasonsResponseModel'
   /retailstore/api/inventory/stock/remove:
     post:
       security:
@@ -365,8 +365,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
   /retailstore/api/inventory/get-stocked-products:
     post:
       security:
@@ -382,9 +382,9 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/GetInventoryProductsResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetInventoryProductsResponseModel'
   /retailstore/api/eposcustomer:
     post:
       security:
@@ -400,8 +400,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
 
     get:
       security:
@@ -413,9 +413,9 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/GetRetailCustomerResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRetailCustomerResponseModel'
   /retailstore/api/sale:
     post:
       security:
@@ -431,8 +431,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
     get:
       security:
         - bearerAuth: []
@@ -509,8 +509,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
 
   /retailstore/api/inventory/transactions:
     get:
@@ -555,8 +555,8 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
                 
 
   /retailstore/api/inventory/transaction-detail:
@@ -575,9 +575,66 @@ paths:
       responses:
         '200':
           content:
-              application/json:
-                schema:
+            application/json:
+              schema:
+          
+  /retailorder/api/order/delivered:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Order Service
+      summary: Get delivered orders
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveredOrderResponseModel'
+              
+  /retailorder/api/order/delivered-details:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Order Service
+      summary: Get delivered order Details
+      parameters:
+        - in: query
+          name: OrderId
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveredOrderDetailResponseModel'
+  
+  /retailstore/api/inventory/product-detail:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Product Service
+      summary: Get delivered order Details
+      parameters:
+        - in: query
+          name: ProductIds
+          required: true
+          schema:
+            type: array
+              items:
+                type: number
 
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryProductDetailModel'
+        
 
 components:
   securitySchemes:
@@ -1152,3 +1209,45 @@ components:
           type: boolean
           required: true
           example: false
+      
+    DeliveredOrderResponseModel:
+      type: array
+        items:
+          type: object
+          properties:
+            OrderId:
+              type: number
+            TotalQuantity:
+              type: number
+            OrderDate:
+              type: string
+
+    DeliveredOrderDetailResponseModel:
+      type: object
+      properties:
+        ProductId:
+          type: number
+        Quantity:
+          type: number
+        CostPrice:
+          type: number
+
+    InventoryProductDetailModel:
+      type: array
+        items:
+          type: object
+          properties:
+            ProductId:
+              type: number
+            ProductName:
+              type: string
+            UnitWeight:
+              type: string
+            CurrentQuantity:
+              type: number
+            CurrentCostPrice:
+              type: number
+            CurrentSellingPrice:
+              type: number
+            ImageURL:
+              type: string
