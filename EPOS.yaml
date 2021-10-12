@@ -1104,6 +1104,8 @@ components:
       properties:
         ProductId:
           type: number
+        InventoryId:
+          type: number
         CostPrice:
           type: number
         SellingPrice:
