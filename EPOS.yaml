@@ -1154,7 +1154,7 @@ components:
           items:
             type: object
             properties:
-              ProductId:
+              InventoryId:
                 type: number
                 required: true
               Quantity:
