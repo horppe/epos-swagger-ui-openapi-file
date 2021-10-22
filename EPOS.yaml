@@ -176,63 +176,6 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/GetInventoryProductsResponseModel'
-  /retailstore/api/inventory/favourite-product:
-    get:
-      security:
-        - bearerAuth: []
-      tags:
-        - Inventory Service
-      summary: Get Retailer's Inventory
-      parameters:
-        - in: query
-          name: CategoryIds
-          required: false
-          schema:
-            type: array
-            items:
-              type: number
-        - in: query
-          name: BrandIds
-          required: false
-          schema:
-            type: array
-            items:
-              type: number
-        - in: query
-          name: PageIndex
-          required: false
-          example: 1
-          schema:
-            type: number
-        - in: query
-          name: PageSize
-          required: false
-          example: 10
-          schema:
-            type: number
-        - in: query
-          name: SortBy
-          required: false
-          schema:
-            type: string
-            enum: ["ProductName"]
-        - in: query
-          name: SortDirection
-          required: false
-          schema:
-            type: string
-            enum: ["ASC", "DESC"]
-        - in: query
-          name: SearchKeyword
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema: 
-                $ref: '#/components/schemas/GetInventoryProductsResponseModel'
   /retailstore/api/inventory/products/activate:
     post:
       security:
@@ -305,6 +248,26 @@ paths:
             application/json:
               schema: 
     
+    delete: 
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Remove stock
+      parameters:
+        - in: query
+          name: StockProducts
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StockProductModel'
+        - in: query
+          name: ReasonId
+          required: true
+          schema:
+            type: number
+    
   /retailstore/api/distributor:
     post:
       security:
@@ -337,7 +300,7 @@ paths:
               schema: 
                 $ref: '#/components/schemas/RetailerDistributorsResponseModel'
 
-  /retailstore/api/inventory/removal-reasons:
+  /retailstore/api/inventory/removal/reasons:
     get:
       security:
         - bearerAuth: []
@@ -350,25 +313,25 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/RemovalReasonsResponseModel'
-  /retailstore/api/inventory/stock/remove:
-    post:
-      security:
-        - bearerAuth: []
-      tags:
-        - Inventory Service
-      summary: Remove Stock
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StockRemoveRequestModel'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-  /retailstore/api/inventory/get-stocked-products:
-    post:
+  # /retailstore/api/inventory/stock/remove:
+  #   post:
+  #     security:
+  #       - bearerAuth: []
+  #     tags:
+  #       - Inventory Service
+  #     summary: Remove Stock
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/StockRemoveRequestModel'
+  #     responses:
+  #       '200':
+  #         content:
+  #           application/json:
+  #             schema:
+  /retailstore/api/inventory/products/stocked:
+    get:
       security:
         - bearerAuth: []
       tags:
@@ -494,7 +457,63 @@ paths:
         - Sale Service
       summary: Retrieve Dashboard Sale information
   
-  /retailstore/api/inventory/update-favourite-product:
+  /retailstore/api/inventory/product/favourite:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Retailer's Inventory
+      parameters:
+        - in: query
+          name: CategoryIds
+          required: false
+          schema:
+            type: array
+            items:
+              type: number
+        - in: query
+          name: BrandIds
+          required: false
+          schema:
+            type: array
+            items:
+              type: number
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["ProductName"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/GetInventoryProductsResponseModel'
     put:
       security:
         - bearerAuth: []
@@ -559,7 +578,7 @@ paths:
               schema:
                 
 
-  /retailstore/api/inventory/transaction-detail:
+  /retailstore/api/inventory/transaction/detail:
     get:
       security:
         - bearerAuth: []
@@ -572,6 +591,75 @@ paths:
           required: true
           schema:
             type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+  
+  /retailstore/api/inventory/product/private:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Add Private Product
+      consumes:
+         - multipart/form-data
+      parameters:
+        - in: formData
+          name: Name
+          required: true
+          type: string
+          description: Private Product Name
+        - in: formData
+          name: CostPrice
+          required: true
+          type: number
+        - in: formData
+          name: SellingPrice
+          required: true
+          type: number
+        - in: formData
+          name: Quantity
+          required: true
+          type: number
+        - in: formData
+          name: BrandId
+          required: true
+          type: number
+        - in: formData
+          name: CategoryId
+          required: true
+          type: number
+        - in: formData
+          name: UnitWeight
+          required: true
+          type: string
+        - in: formData
+          name: ProductImage
+          required: true
+          type: file
+          description: The product image.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+  
+  /retailstore/api/inventory/transaction/products:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get Transaction Products
+      parameters:
+        - in: query
+          name: TransactionId
+          required: true
+          type: number
+          description: Transaction ID
       responses:
         '200':
           content:
@@ -612,7 +700,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeliveredOrderDetailResponseModel'
   
-  /retailstore/api/inventory/product-detail:
+  /retailstore/api/inventory/product/detail:
     get:
       security:
         - bearerAuth: []
