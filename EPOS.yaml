@@ -634,7 +634,7 @@ paths:
           type: number
         - in: formData
           name: UnitWeight
-          required: true
+          required: false
           type: string
         - in: formData
           name: ProductImage
