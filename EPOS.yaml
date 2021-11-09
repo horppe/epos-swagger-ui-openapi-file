@@ -456,6 +456,25 @@ paths:
       tags: 
         - Sale Service
       summary: Retrieve Dashboard Sale information
+
+      /retailstore/api/support:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Help and Support
+      summary: Get Help and Support for Customer
+      # requestBody:
+      #   content:
+      #     application/json:
+      #       schema:
+      #         $ref: '#/components/schemas/EPOSQueryResponseDTO'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EPOSQueryResponseDTO'
   
   /retailstore/api/inventory/product/favourite:
     get:
