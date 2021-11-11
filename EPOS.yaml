@@ -434,6 +434,21 @@ paths:
             type: string
           description: Query end date
 
+  /retailstore/api/support:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Help and Support
+      summary: Get Help and Support for Customer
+  
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSupportResponseModel'
+
   /retailstore/api/sale/invoice:
     get:
       security:
@@ -456,21 +471,6 @@ paths:
       tags: 
         - Sale Service
       summary: Retrieve Dashboard Sale information
-
- /retailstore/api/support:
-    get:
-      security:
-        - bearerAuth: []
-      tags:
-        - Help and Support
-      summary: Get Help and Support for Customer
-  
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetSupportResponseModel'
   
   /retailstore/api/inventory/product/favourite:
     get:
