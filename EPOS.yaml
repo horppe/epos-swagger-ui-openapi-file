@@ -470,7 +470,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SupportResponseModel'
+                $ref: '#/components/schemas/GetSupportResponseModel'
   
   /retailstore/api/inventory/product/favourite:
     get:
