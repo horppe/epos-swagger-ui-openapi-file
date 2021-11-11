@@ -436,8 +436,8 @@ paths:
 
   /retailstore/api/support:
     get:
-      # security:
-      #   - bearerAuth: []
+      security:
+        - bearerAuth: []
       tags:
         - Help and Support
       summary: Get Help and Support for Customer
