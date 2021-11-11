@@ -464,11 +464,7 @@ paths:
       tags:
         - Help and Support
       summary: Get Help and Support for Customer
-      # requestBody:
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: '#/components/schemas/EPOSQueryResponseDTO'
+  
       responses:
         '200':
           content:
