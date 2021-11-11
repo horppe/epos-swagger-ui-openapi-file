@@ -457,7 +457,7 @@ paths:
         - Sale Service
       summary: Retrieve Dashboard Sale information
 
-      /retailstore/api/support:
+ /retailstore/api/support:
     get:
       security:
         - bearerAuth: []
