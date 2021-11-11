@@ -254,19 +254,24 @@ paths:
       tags:
         - Inventory Service
       summary: Remove stock
-      parameters:
-        - in: query
-          name: StockProducts
-          required: true
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/StockProductModel'
-        - in: query
-          name: ReasonId
-          required: true
-          schema:
-            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockRemoveRequestModel'
+      # parameters:
+      #   - in: query
+      #     name: StockProducts
+      #     required: true
+      #     schema:
+      #       type: array
+      #       items:
+      #         $ref: '#/components/schemas/StockProductModel'
+      #   - in: query
+      #     name: ReasonId
+      #     required: true
+      #     schema:
+      #       type: number
     
   /retailstore/api/distributor:
     post:
@@ -372,7 +377,36 @@ paths:
       tags:
         - Customer Service
       summary: Get Retailer Customers
-      
+      parameters:
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["ProductName"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           content:
@@ -577,7 +611,6 @@ paths:
             application/json:
               schema:
                 
-
   /retailstore/api/inventory/transaction/detail:
     get:
       security:
@@ -722,7 +755,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryProductDetailModel'
-        
+
+  /retailstore/api/inventory/products/count:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get product and inventory count
 
 components:
   securitySchemes:
