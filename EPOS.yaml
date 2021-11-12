@@ -447,8 +447,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetSupportInfo'
-
+                $ref: '#/components/schemas/support
   /retailstore/api/sale/invoice:
     get:
       security:
