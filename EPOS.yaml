@@ -447,7 +447,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SupportInfoResponseModel'
+                $ref: '#/components/schemas/GetSupportInfoResponseModel'
 
   /retailstore/api/sale/invoice:
     get:
