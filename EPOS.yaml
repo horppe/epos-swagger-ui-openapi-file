@@ -462,10 +462,10 @@ paths:
           content:
             application/json:
               schema:
-                 string : [ VideoId  ]
+                 'string : [ VideoId  ]
                  string : [ VideoName ]
                  string : [ VideoLink ]
-                 string : [ VideoDescription ]
+                 string : [ VideoDescription ]'
 
   /retailstore/api/sale/invoice:
     get:
