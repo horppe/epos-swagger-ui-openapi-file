@@ -1356,3 +1356,17 @@ components:
             type: number
           ImageURL:
             type: string
+
+    SupportInfoResponseModel:
+      type: array
+      items:
+        type: object
+        properties:
+          VideoId:
+            type: string
+          VideoName:
+            type: string
+          VideoLink:
+            type: string
+          VideoDescription:
+            type: string
