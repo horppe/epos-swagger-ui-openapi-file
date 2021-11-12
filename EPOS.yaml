@@ -434,21 +434,6 @@ paths:
             type: string
           description: Query end date
 
-  # /retailstore/api/support:
-  #   get:
-  #     security:
-  #       - bearerAuth: []
-  #     tags:
-  #       - Help and Support
-  #     summary: Get Help and Support for Customer
-  
-  #     responses:
-  #       '200':
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/SupportInfoResponseModel'
-
   /retailstore/api/support:
     get:
       security:
@@ -462,10 +447,7 @@ paths:
           content:
             application/json:
               schema:
-                 'string : [ VideoId  ]
-                 string : [ VideoName ]
-                 string : [ VideoLink ]
-                 string : [ VideoDescription ]'
+                # $ref: '#/components/schemas/SupportInfoResponseModel'
 
   /retailstore/api/sale/invoice:
     get:
