@@ -395,7 +395,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: ["ProductName"]
+            enum: ["Name","Phone","CreatedDate"]
         - in: query
           name: SortDirection
           required: false
@@ -721,6 +721,36 @@ paths:
       tags:
         - Order Service
       summary: Get delivered orders
+      parameters:
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["OrderDate","TotalQuantity"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           content:
@@ -1227,6 +1257,9 @@ components:
           required: true
           items:
             $ref: '#/components/schemas/PaymentModel'
+        TotalDiscount:
+          type: number
+          required: false
 
     PaymentModel:
       type: object
