@@ -1364,9 +1364,9 @@ components:
         properties:
           VideoId:
             type: string
-          VideoName:
+          Name:
             type: string
           VideoLink:
             type: string
-          VideoDescription:
+          Description:
             type: string
