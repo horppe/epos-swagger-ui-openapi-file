@@ -254,19 +254,24 @@ paths:
       tags:
         - Inventory Service
       summary: Remove stock
-      parameters:
-        - in: query
-          name: StockProducts
-          required: true
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/StockProductModel'
-        - in: query
-          name: ReasonId
-          required: true
-          schema:
-            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockRemoveRequestModel'
+      # parameters:
+      #   - in: query
+      #     name: StockProducts
+      #     required: true
+      #     schema:
+      #       type: array
+      #       items:
+      #         $ref: '#/components/schemas/StockProductModel'
+      #   - in: query
+      #     name: ReasonId
+      #     required: true
+      #     schema:
+      #       type: number
     
   /retailstore/api/distributor:
     post:
@@ -372,7 +377,36 @@ paths:
       tags:
         - Customer Service
       summary: Get Retailer Customers
-      
+      parameters:
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["Name","Phone","CreatedDate"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           content:
@@ -592,7 +626,6 @@ paths:
             application/json:
               schema:
                 
-
   /retailstore/api/inventory/transaction/detail:
     get:
       security:
@@ -688,6 +721,36 @@ paths:
       tags:
         - Order Service
       summary: Get delivered orders
+      parameters:
+        - in: query
+          name: PageIndex
+          required: false
+          example: 1
+          schema:
+            type: number
+        - in: query
+          name: PageSize
+          required: false
+          example: 10
+          schema:
+            type: number
+        - in: query
+          name: SortBy
+          required: false
+          schema:
+            type: string
+            enum: ["OrderDate","TotalQuantity"]
+        - in: query
+          name: SortDirection
+          required: false
+          schema:
+            type: string
+            enum: ["ASC", "DESC"]
+        - in: query
+          name: SearchKeyword
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           content:
@@ -737,7 +800,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryProductDetailModel'
-        
+
+  /retailstore/api/inventory/products/count:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Service
+      summary: Get product and inventory count
+
+  /retailstore/api/report:
+    get:
+      security:
+        - bearerAuth: []
+      tags: 
+        - Report Service
+      summary: Retrieve Report on Sales
+      parameters:
+        - in: query
+          name: Year
+          required: false
+          schema:
+            type: number
+          description: Year 
+        - in: query
+          name: Payment Method
+          required: false
+          schema:
+            type: string
+            enum: ["CASH", "POS","BANK TRANSFER"]
+          description: Payment Method 
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportInfoResponseModel'    
 
 components:
   securitySchemes:
@@ -1187,6 +1285,9 @@ components:
           required: true
           items:
             $ref: '#/components/schemas/PaymentModel'
+        TotalDiscount:
+          type: number
+          required: false
 
     PaymentModel:
       type: object
@@ -1370,3 +1471,35 @@ components:
             type: string
           Description:
             type: string
+
+    ReportInfoResponseModel:
+      type: array
+      items:
+        type: object
+        properties:
+          InventoryValue:
+            type: number
+          TotalSales:
+            type: number
+          TotalProfit:
+            type: number
+          TotalProductSold:
+            type: number      
+          PaymentTypeStat:
+            type: array
+            items: 
+               $ref: '#/components/schemas/PaymentTypeStat'  
+    PaymentTypeStat:
+      type: array
+      items:
+        type: object     
+        properties:
+          Month:
+            type: string
+          Data:
+            type: number                  
+
+
+  
+    
+       
