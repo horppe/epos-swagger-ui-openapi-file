@@ -809,6 +809,34 @@ paths:
         - Inventory Service
       summary: Get product and inventory count
 
+  /retailstore/api/report:
+    get:
+      security:
+        - bearerAuth: []
+      tags: 
+        - Report Service
+      summary: Retrieve Report on Sales
+      parameters:
+        - in: query
+          name: Year
+          required: false
+          schema:
+            type: number
+          description: Year 
+        - in: query
+          name: Payment Method
+          required: false
+          schema:
+            type: string
+            enum: ["CASH", "POS","BANK TRANSFER"]
+          description: Payment Method 
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportInfoResponseModel'    
+
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -1443,3 +1471,30 @@ components:
             type: string
           Description:
             type: string
+
+    ReportInfoResponseModel:
+      type: array
+      items:
+        type: object
+        properties:
+          InventoryValue:
+            type: number
+          TotalSales:
+            type: number
+          TotalProfit:
+            type: number
+          TotalProductSold:
+            type: number      
+          PaymentTypeStat:
+            type: array
+            items: 
+               $ref: '#/components/schemas/PaymentTypeStat'  
+    PaymentTypeStat:
+      type: array
+      items:
+        type: object     
+        properties:
+          Month:
+            type: string
+          Data:
+            type: number        
