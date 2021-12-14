@@ -817,6 +817,14 @@ paths:
         - Report Service
       summary: Retrieve Report on Sales
       parameters:
+      
+        - in: query
+          name: PaymentDataView
+          required: true
+          schema:
+            type: string
+            enum: ["Year", "Range"]
+          description: Type of query year or range.
         - in: query
           name: Year
           required: true
@@ -830,6 +838,18 @@ paths:
             type: string
             enum: ["CASH", "POS","BANKTRANSFER"]
           description: Payment Method 
+        - in: query
+          name: StartDate
+          required: true
+          schema:
+            type: string
+          description: Query start date
+        - in: query
+          name: EndDate
+          required: true
+          schema:
+            type: string
+          description: Query end date
       responses:
         '200':
           content:
@@ -1490,7 +1510,7 @@ components:
     PaymentTypeStat:
         type: object     
         properties:
-          Month:
+          Period:
             type: string
           Data:
             type: number                  
