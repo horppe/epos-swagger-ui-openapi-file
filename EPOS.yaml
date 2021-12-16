@@ -837,6 +837,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReportInfoResponseModel'    
 
+  /retailstore/api/feedback:  
+    get:
+      security:
+        - bearerAuth: []
+      tags: 
+        - feedback Service
+      summary:  feedback of Users
+      parameters:
+        - in: query
+          name: Rating
+          required: true
+          schema:
+            type: number
+          description: App Rating
+        - in: query
+          name: Message
+          required: true
+          schema:
+            type: string
+          description: FeedbackMessage 
+        - in: query
+          name: Version
+          required: true
+          schema:
+            type: number
+          description: FeedbackMessage  
+
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
