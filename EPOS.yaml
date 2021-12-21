@@ -862,7 +862,13 @@ paths:
           required: true
           schema:
             type: number
-          description: FeedbackMessage  
+          description: FeedbackVersion 
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackInfoResponseModel'    
 
 components:
   securitySchemes:
@@ -1520,8 +1526,15 @@ components:
           Month:
             type: string
           Data:
-            type: number                  
+            type: number  
 
+    FeedbackInfoResponseModel:       
+        type: object
+        properties:
+          Message:
+            type: string                 
+
+  
 
   
     
