@@ -817,6 +817,14 @@ paths:
         - Report Service
       summary: Retrieve Report on Sales
       parameters:
+      
+        - in: query
+          name: PaymentDataView
+          required: true
+          schema:
+            type: string
+            enum: ["Year", "Range"]
+          description: Type of query year or range.
         - in: query
           name: Year
           required: true
@@ -830,12 +838,135 @@ paths:
             type: string
             enum: ["CASH", "POS","BANKTRANSFER"]
           description: Payment Method 
+        - in: query
+          name: StartDate
+          required: true
+          schema:
+            type: string
+          description: Query start date
+        - in: query
+          name: EndDate
+          required: true
+          schema:
+            type: string
+          description: Query end date
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReportInfoResponseModel'    
+                $ref: '#/components/schemas/ReportInfoResponseModel'
+  /retailstore/api/inventoryunit:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Get Active Inventory Units
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUnitModel'
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Add Inventory Unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddInventoryUnitModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Update Inventory Unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInventoryUnitModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+    delete: 
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Delete Inventory Unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInventoryUnitsModel'
+      responses:
+        '200':
+  /retailstore/api/inventoryunit/restore:
+    patch: 
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Restore Inventory Unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInventoryUnitsModel'
+      responses:
+        '200':
+  /retailstore/api/inventoryunit/item/{inventoryId}/{inventoryUnitId}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Get Inventory Unit Item Details
+      parameters:
+        - in: path
+          name: inventoryId
+          required: true
+          schema:
+            type: number
+          description: Inventory ID
+        - in: path
+          name: inventoryUnitId
+          required: true
+          schema:
+            type: number
+          description: Inventory Unit ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetInventoryUnitItemDetailResponseModel'
+  /retailstore/api/inventoryunit/deleted:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Inventory Unit Service
+      summary: Get Deleted Inventory Units
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUnitModel'
 
   /retailstore/api/feedback:  
     get:
@@ -1489,8 +1620,15 @@ components:
           CurrentSellingPrice:
             type: number
           ImageURL:
+            type: array
+            items: 
+              $ref: '#/components/schemas/ImageInfoURLModel' 
+    ImageInfoURLModel:
+        type: object
+        properties:
+          ImageURL:
             type: string
-
+ 
     SupportInfoResponseModel:
       type: array
       items:
@@ -1533,9 +1671,61 @@ components:
         properties:
           Message:
             type: string                 
-
-  
-
-  
-    
-       
+      type: object
+      properties:
+        InventoryValue:
+          type: number
+        TotalSales:
+          type: number
+        TotalProfit:
+          type: number
+        TotalProductSold:
+          type: number      
+        PaymentTypeStat:
+          type: array
+          items: 
+              $ref: '#/components/schemas/PaymentTypeStat'  
+    PaymentTypeStat:
+      type: object     
+      properties:
+        Period:
+          type: string
+        Data:
+          type: number
+    InventoryUnitModel:
+      type: object     
+      properties:
+        InventoryUnitId:
+          type: number
+        Name:
+          type: string
+    AddInventoryUnitModel:
+      type: object     
+      properties:
+        Name:
+          type: string
+    UpdateInventoryUnitModel:
+      type: object     
+      properties:
+        InventoryUnitId:
+          type: number
+        Name:
+          type: string
+    GetInventoryUnitItemDetailResponseModel:
+      type: object     
+      properties:
+        CurrentQuantity:
+          type: number
+        CurrentCostPrice:
+          type: number
+        CurrentSellingPrice:
+          type: number
+        UnitWeight:
+          type: string
+    UpdateInventoryUnitsModel:
+      type: object
+      properties:
+        InventoryUnitIds:
+          type: array
+          items:
+            type: number
