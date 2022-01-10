@@ -1587,7 +1587,15 @@ components:
           CurrentSellingPrice:
             type: number
           ImageURL:
-            type: string
+          type: array
+          items: 
+              $ref: '#/components/schemas/ProductDetailImageURL'  
+
+    ProductDetailImageURL:  
+      type: object     
+      properties:
+        ImageURL:
+          type: string      
 
     SupportInfoResponseModel:
       type: array
